@@ -1,0 +1,341 @@
+%%%%
+% MTecknology's Resume
+%%%%
+% Author: Michael Lustfield
+% License: CC-BY-4
+% - https://creativecommons.org/licenses/by/4.0/legalcode.txt
+%%%%
+
+\documentclass[letterpaper,10pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% BEGIN_FILE: mteck.sty
+%% NOTE: Everything between here and END_FILE can
+%% be relocated to "mteck.sty" and then included with:
+%\usepackage{mteck}
+\usepackage[T5]{fontenc}   % Hỗ trợ font tiếng Việt
+\usepackage[utf8]{inputenc} % Hỗ trợ nhập liệu tiếng Việt với UTF-8
+\usepackage{tabularx}
+\usepackage{lmodern}
+\usepackage[vietnamese]{babel}
+
+% Dependencies
+% NOTE: Some packages (lastpage, hyperref) require second build!
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{bookmark}
+\usepackage{lastpage}
+
+% Sans-Serif
+%\usepackage[sfdefault]{FiraSans}
+%\usepackage[sfdefault]{roboto}
+%\usepackage[sfdefault]{noto-sans}
+%\usepackage[default]{sourcesanspro}
+
+% Serif
+\usepackage{CormorantGaramond}
+\usepackage{charter}
+
+% Colors
+% Use with \color{Name}
+% Can wrap entire heading with {\color{accent} [...] }
+\usepackage{xcolor}
+\definecolor{accentTitle}{HTML}{0e6e55}
+\definecolor{accentText}{HTML}{0e6e55}
+\definecolor{accentLine}{HTML}{a16f0b}
+
+% Misc. Options
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\urlstyle{same}
+
+% Adjust Margins
+\addtolength{\oddsidemargin}{-0.7in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-0.7in}
+\addtolength{\textheight}{1.4in}
+
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\setlength{\tabcolsep}{0pt}
+\setlength{\footskip}{3.7pt}
+\raggedbottom
+\raggedright
+
+% ATS Readability
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+%-----------------%
+% Custom Commands %
+%-----------------%
+
+% Centered title along with subtitle between HR
+% Usage: \documentTitle{Name}{Details}
+\newcommand{\documentTitle}[2]{
+  \begin{center}
+    {\Huge\color{accentTitle} #1}
+    \vspace{10pt}
+    {\color{accentLine} \hrule}
+    \vspace{2pt}
+    %{\footnotesize\color{accentTitle} #2}
+    \footnotesize{#2}
+    \vspace{2pt}
+    {\color{accentLine} \hrule}
+  \end{center}
+}
+
+% Create a footer with correct padding
+% Usage: \documentFooter{\thepage of X}
+\newcommand{\documentFooter}[1]{
+  \setlength{\footskip}{10.25pt}
+  \fancyfoot[C]{\footnotesize #1}
+}
+
+% Simple wrapper to set up page numbering
+% Usage: \numberedPages
+% WARNING: Must run pdflatex twice!
+\newcommand{\numberedPages}{
+  \documentFooter{\thepage/\pageref{LastPage}}
+}
+
+% Section heading with horizontal rule
+% Usage: \section{Title}
+\titleformat{\section}{
+  \vspace{-5pt}
+  \color{accentText}
+  \raggedright\large\bfseries
+}{}{0em}{}[\color{accentLine}\titlerule]
+
+% Section heading with separator and content on same line
+% Usage: \tinysection{Title}
+\newcommand{\tinysection}[1]{
+  \phantomsection
+  \addcontentsline{toc}{section}{#1}
+  {\large{\bfseries\color{accentText}#1} {\color{accentLine} |}}
+}
+
+% Indented line with arguments left/right aligned in document
+% Usage: \heading{Left}{Right}
+\newcommand{\heading}[2]{
+  \hspace{10pt}#1\hfill#2\\
+}
+
+% Adds \textbf to \heading
+\newcommand{\headingBf}[2]{
+  \heading{\textbf{#1}}{\textbf{#2}}
+}
+
+% Adds \textit to \heading
+\newcommand{\headingIt}[2]{
+  \heading{\textit{#1}}{\textit{#2}}
+}
+
+% Template for itemized lists
+% Usage: \begin{resume_list} [items] \end{resume_list}
+\newenvironment{resume_list}{
+  \vspace{-7pt}
+  \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=30pt]
+}{
+  \end{itemize}
+  %\vspace{-2pt}
+}
+
+% Formats an item to use as an itemized title
+% Usage: \itemTitle{Title}
+\newcommand{\itemTitle}[1]{
+  \item[] \underline{#1}\vspace{4pt}
+}
+
+% Bullets used in itemized lists
+\renewcommand\labelitemi{--}
+
+%% END_FILE: mteck.sty
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+%===================%
+% John Doe's Resume %
+%===================%
+
+%\numberedPages % NOTE: lastpage requires a second build
+%\documentFooter{\thepage of 2} % Does similar without using lastpage
+\begin{document}
+
+  %---------%
+  % Heading %
+  %---------%
+
+\documentTitle{Nguyen Duy Dat}{
+    % Web Version
+    %\raisebox{-0.05\height} \faPhone\ [redacted - web copy] ~
+    %\raisebox{-0.15\height} \faEnvelope\ [redacted - web copy] ~
+    %%
+    \href{tel:1234567890}{
+      \raisebox{-0.05\height} \faPhone\ 0961440195} ~ | ~
+    \href{mailto:user@domain.tld}{
+      \raisebox{-0.15\height} \faEnvelope\ datlaid@gmail.com} ~ | ~
+    \href{www.linkedin.com/in/nguyễn-đạt-4953202a5}{
+      \raisebox{-0.15\height} \faLinkedin\ linkedin.com/in/DuyDat} ~ | ~
+    \href{https://github.com/DatNguyen2711}{
+      \raisebox{-0.15\height} \faGithub\ github.com/DatNguyen} ~ | ~
+    \raisebox{-0.15\height} \faHome\ Đức Giang - Hoài Đức - Hà Nội
+}
+
+  %---------%
+  % Summary %
+  %---------%
+
+  \tinysection{Personal Goal}
+I desire to study and enhance my knowledge within a enterprise environment, to learn various new technologies and skills that match the needs of the company and my self-orientation. My aspiration for the future is to become a DevOps Engineer.
+
+  %-----------%
+  % Education %
+  %-----------%
+
+  \section{Education}
+
+  \headingBf{FPT University 2020-2024}{} % Note: Adding year(s) exposes an implied age
+  \headingIt{Major: Software Engineering}{}
+  \headingIt{GPA: 2.9/3.0}{}
+
+  \vspace{5pt}
+
+  \section{Languages}
+
+  \headingBf{English}{} % Note: Adding year(s) exposes an implied age
+  \headingIt{Intermediate: Basic communication, reading documents, and listening at a fundamental level.}{}
+
+  \vspace{5pt}
+%--------%
+% Skills %
+%--------%
+
+\section{Technical Skills}
+
+\begin{tabularx}{\textwidth}{@{} l X @{}}
+\textbf{Container} & \hspace{10pt} Docker, Kubernetes \\[8pt] % Added horizontal space
+\textbf{Cloud, IAC} & \hspace{10pt} Amazon Web Services, Terraform \\[8pt] % Added horizontal space
+\textbf{CICD} & \hspace{10pt} Jenkins, Gitlab-CI, ArgoCD, AWS Code Pipeline \\[8pt] % Added horizontal space
+\textbf{Monitorings} & \hspace{10pt} Prometheus, Grafana \\[8pt] % Added horizontal space
+\textbf{Frameworks} & \hspace{10pt} .NET Core, ReactJS, NextJS \\[8pt] % Added horizontal space
+\textbf{Others} & \hspace{10pt} Ubuntu, VMWare, Helm, Shell Script \\
+\end{tabularx}
+
+
+
+%------------%
+% Experience %
+%------------%
+
+\section{Experiences}
+
+\headingBf{AI Solutions JSC}{Apr 2023 - Aug 2023}
+\headingIt{Front-End Internship}{}
+
+% First project: Open-Central
+\begin{resume_list}
+    \itemTitle{Project: Online examination system for employees and candidates}
+    \item \textbf{Team size:} 5
+    \item \textbf{Descriptions:} Participating in the company's quiz project, taking responsibility for building the user interface, handling APIs from the backend, and managing application states. And also, config application to dockerize with docker and integrated with Gitlab-CI.
+    \item \textbf{Technologies:} ReactJS, Srping Boot, Redis, PostgreSQL, Docker, Gitlab-CI.
+\end{resume_list}
+
+
+
+\headingBf{VTI Group}{May 2024 -- Aug 2024}
+\headingIt{DevOps Internship}{}
+
+% First project: Open-Central
+\begin{resume_list}
+    \itemTitle{Project: Open-Central}
+    \item \textbf{Customers:} from Japan
+    \item \textbf{Team size:} 6
+    \item \textbf{Descriptions:} Participated in implementing a CI/CD pipeline on AWS environment, setting up infrastructure using IaC (Terraform), and creating documentation for customer acceptance.
+    \item \textbf{Technologies:} AWS (ECS, Step Functions, S3, Code Pipeline, CodeBuild, CodeDeploy, CodeCommit, RDS), Gitlab, Terraform, Docker.
+\end{resume_list}
+
+% Second project: SPPL
+\begin{resume_list}
+    \itemTitle{Project: SPPL}
+    \item \textbf{Customers:} Singapore Pool, Asiapac
+    \item \textbf{Team size:} 5
+    \item \textbf{Descriptions:}
+    \begin{itemize}
+        \item The project was implemented using a landing zone architecture with multiple accounts: one shared account to distribute resources to other accounts, one network account containing subnets and a transit gateway, one inspection account serving as a firewall for controlling traffic to and from OpenShift clusters both within and outside the internet, and a final account containing the ROSA Cluster.
+        \item Remotely accessed the customer's server to deploy the CI/CD pipeline using GitLab-CI for Applications and Infrastructure, participated in integrating the DevSecOps process into the CI/CD pipeline such as: scan images, repository, artifacts, and also load testing. All images are stored at the customer's private Nexus Repository.
+        \item Deployed Dynatrace and Aqua Security on the ROSA cluster, while also using Terraform to provision the infrastructure and configurations for ROSA cluster.
+        \item Participated in meetings with team colleagues and clients to demo and resolve issues during the development process as needed.
+        \item Create private hosted zone for all account to resolve DNS between Cloud infrastructure with customer's on-premise data center.
+    \end{itemize}
+    \item \textbf{Technologies:} ROSA (Redhat OpenShift Service on AWS), Dynatrace, Aqua Security, AWS (Route53, Site-to-Site VPN, KMS, ECR, VPC, Transit Gateway, Direct Connect), Fortinet, Podman, ArgoCD, Terraform, GitLab-CI, Fortify (SAST), NeoLoad (Load test), Helm, AzureAD.
+\end{resume_list}
+%----------------------------%
+% Extracurricular Activities %
+%----------------------------%
+\section{Personal Projects}
+
+\headingBf{CI-CD Pipeline \& Monitoring for Spring Boot Application}{}
+\begin{resume_list}
+    \item \textbf{Link demo:} \href{https://www.youtube.com/watch?v=5umIJX7PEyY}{https://www.youtube.com/watch?v=5umIJX7PEyY}
+    \item \textbf{Description:} 
+    Establishing infrastructure for the Spring Boot project using MySQL and Redis (on-premise). The infrastructure consists of three separate Ubuntu servers and integrates CI/CD using GitLab-CI with a local and private GitLab registry, then integrated Monitoring's agent to scrape the metric logs of infrastructure.
+    \item \textbf{Technologies:} \\
+    Frameworks: Java (Spring Boot) \\
+    Database: MySQL, Redis \\
+    CICD: GitLab-CI \\
+    Monitoring: Node-Exporter, Prometheus, Grafana, ELK Stack \\
+    Container Platform: Docker \\
+    Others: Nginx, VMWare, Ubuntu
+\end{resume_list}
+
+\headingBf{CI-CD For ASP.NET CORE Application Using Jenkins}{}
+\begin{resume_list}
+    \item \textbf{Link demo:} \href{https://youtu.be/Ndw8CcNwMq8?si=o9gBZFeyQEZfz0MI}{https://youtu.be/Ndw8CcNwMq8?si=o9gBZFeyQEZfz0MI}
+    \item \textbf{Description:} 
+    Establishing infrastructure for the ASP.NET Core project using ReactJS and SQL Server. The infrastructure consists of three separate Ubuntu servers and integrates CI/CD using GitLab-CI with a local and private registry. In the production stage using Jenkins with Groovy script for automation deploy. Docker images will be stored in Harbor Registry that is located in the EC2 instance.
+    \item \textbf{Technologies:} \\
+    Frameworks: ASP.NET Core 8, ReactJS \\
+    Database: SQL Server \\
+    CICD: Jenkins, GitLab-CI \\
+    Container Platform: Docker \\
+    Others: AWS EC2, Nginx, VMWare, Ubuntu, Bash script, Groovy script
+\end{resume_list}
+
+\headingBf{Deploy Microservice Application On AWS}{}
+\begin{resume_list}
+    \item \textbf{Link demo:} \href{https://youtu.be/1-hKtN0RKec}{https://youtu.be/1-hKtN0RKec}
+    \item \textbf{Description:} 
+    Building infrastructure for Microservice application using AWS VPC with Terraform for managing infrastructure using remote backend (Terraform Cloud). Using EC2 instance for all backend services, then integrated with Application Load Balancer and Auto Scaling Group. Users will access the client through Front-End application hosting on AWS S3 integrated with Route53 DNS.
+    \item \textbf{Technologies:} \\
+    Frameworks: ReactJS, NodeJS \\
+    Database: MongoDB \\
+    Cloud: AWS (VPC, Elastic Load Balancing, S3, Route53, CloudWatch, Auto Scaling Group, IAM, EC2) \\
+    IAC: Terraform
+\end{resume_list}
+
+\headingBf{Deploy FullStack Application on Bare Metal Kubernetes Cluster}{}
+\begin{resume_list}
+    \item \textbf{Link demo:} \href{https://youtu.be/vzmf_aMvpYE?si=T0XhzYn37S7138qH}{https://youtu.be/vzmf_aMvpYE?si=T0XhzYn37S7138qH}
+    \item \textbf{Description:} 
+    Set up and configure Kubernetes cluster locally with VMware running on Ubuntu Server, then set up NFS server for dynamic provisioning persistent volumes. Metal LB is used as a Load Balancer and Nginx Ingress Controller. The application can be accessed by DNS of Ingress. Monitoring was set up with Prometheus, Grafana, and alert rules configured to send alerts to Gmail. The application is also packed with Helm chart to deploy on another cluster.
+    \item \textbf{Technologies:} \\
+    Frameworks: .NET Core API 8, ReactJS \\
+    CICD: Jenkins, ArgoCD \\
+    Database: SQL Server \\
+    IAC: Terraform \\
+    Container Platform: Docker, Kubernetes \\
+    Monitoring: Node Exporter, Prometheus, Grafana, Alert Manager \\
+    Others: Metal LB, Nginx Ingress Controller, Cert Manager, NFS Storage Class, Helm, Bitnami Sealed Secret, Hashicorp Vault
+\end{resume_list}
+
+
+\end{document}
